@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <title>Hyena Design - Stageblog</title>
+</head>
+<body>
+    <nav class="top-nav" aria-label="Admin navigatie">
+        <div class="nav-inner">
+            <span class="nav-title">HYENA DESIGN</span>
+            <div class="nav-admin">
+                <button type="button" id="login-toggle">Sign in</button>
+                <form id="login-form" hidden>
+                    <label>
+                        E-mail
+                        <input type="email" id="login-email" autocomplete="email" required>
+                    </label>
+                    <label>
+                        Wachtwoord
+                        <input type="password" id="login-password" autocomplete="current-password" required>
+                    </label>
+                    <div class="form-actions">
+                        <button type="submit">Inloggen</button>
+                        <button type="button" id="login-cancel">Annuleren</button>
+                    </div>
+                </form>
+                <p id="auth-message" role="status"></p>
+                <div id="profile-area" hidden>
+                    <span id="profile-name"></span>
+                    <button type="button" id="logout-button">Sign out</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Hyena Design</h1>
+            <p>Mijn stage bij Websters in graphic design</p>
+        </div>
+    </section>
+    <section id="about">
+        <div class="about-details">
+            <h2>Over mijn stageplek</h2>
+            <ul>
+                <li><strong>Stagebedrijf:</strong> Websters</li>
+                <li><strong>Locatie:</strong> Diestsesteenweg 104B, 3010 Leuven</li>
+                <li><strong>Stageperiode:</strong> 21 september 2026 - 12 december 2026</li>
+                <li><strong>Stagebegeleider:</strong> Arto Vera</li>
+                <li><strong>Stageopdracht:</strong> Graphic Design</li>
+            </ul>
+        </div>
+        <div class="map-wrapper">
+            <iframe
+                src="https://www.google.com/maps?q=Diestsesteenweg+104B,+3010+Leuven&z=14&output=embed"
+                title="Kaart van de stageplek bij Websters"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+    <section id="blogs">
+        <div class="blogs-heading">
+            <div>
+                <p class="section-label">Stageblog</p>
+                <h2>Blogs</h2>
+            </div>
+            <p id="post-count">0 posts</p>
+        </div>
+
+        <form id="post-form" hidden>
+            <div class="form-row">
+                <label>
+                    Titel
+                    <input type="text" id="post-title" placeholder="Titel van je blogpost" required>
+                </label>
+                <label>
+                    Datum
+                    <input type="date" id="post-date" required>
+                </label>
+            </div>
+            <p class="form-intro">Gebruik de vragen als kapstok voor je reflectie. Je hoeft niet lang te schrijven: concrete voorbeelden maken je blog sterk.</p>
+
+            <fieldset>
+                <legend>01 · Werk en realisaties</legend>
+                <label>
+                    Wat heb je de voorbije twee weken gedaan?
+                    <textarea id="work-done" rows="4" placeholder="Beschrijf je belangrijkste taken en opdrachten..." required></textarea>
+                </label>
+                <div class="field-group">
+                    <span class="field-label">Welke skills heb je nodig gehad?</span>
+                    <div class="pill-options">
+                        <label class="pill"><input type="checkbox" name="skills" value="Grafisch ontwerp"><span>Grafisch ontwerp</span></label>
+                        <label class="pill"><input type="checkbox" name="skills" value="Communicatie"><span>Communicatie</span></label>
+                        <label class="pill"><input type="checkbox" name="skills" value="Planning"><span>Planning</span></label>
+                        <label class="pill"><input type="checkbox" name="skills" value="Onderzoek"><span>Onderzoek</span></label>
+                        <label class="pill"><input type="checkbox" name="skills" value="Technische skills"><span>Technische skills</span></label>
+                    </div>
+                </div>
+                <label>
+                    Toon een realisatie (optionele link)
+                    <input type="url" id="achievement-link" placeholder="https://...">
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>02 · Deadlines en planning</legend>
+                <div class="field-group">
+                    <span class="field-label">Zijn de deadlines gehaald?</span>
+                    <div class="pill-options compact-options">
+                        <label class="pill"><input type="radio" name="deadlines" value="Ja" required><span>Ja, allemaal</span></label>
+                        <label class="pill"><input type="radio" name="deadlines" value="Gedeeltelijk"><span>Gedeeltelijk</span></label>
+                        <label class="pill"><input type="radio" name="deadlines" value="Nee"><span>Nee</span></label>
+                    </div>
+                </div>
+                <label>
+                    Waarom wel of niet? En wat is je planning voor de volgende weken?
+                    <textarea id="planning" rows="4" placeholder="Leg kort uit wat goed liep en wat er nog op de planning staat..." required></textarea>
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>03 · Nieuw geleerd</legend>
+                <label>
+                    Wat heb je deze weken geleerd en op welke manier?
+                    <textarea id="learned" rows="4" placeholder="Een nieuwe techniek, inzicht of werkwijze, en hoe je die hebt ontdekt..." required></textarea>
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>04 · Mijn omgeving</legend>
+                <div class="field-group">
+                    <span class="field-label">Over wie wil je vertellen?</span>
+                    <div class="pill-options">
+                        <label class="pill"><input type="checkbox" name="people" value="Collega's"><span>Collega's</span></label>
+                        <label class="pill"><input type="checkbox" name="people" value="Mentor"><span>Mentor</span></label>
+                        <label class="pill"><input type="checkbox" name="people" value="Collega-studenten"><span>Collega-studenten</span></label>
+                        <label class="pill"><input type="checkbox" name="people" value="Stageomgeving"><span>Stageomgeving</span></label>
+                    </div>
+                </div>
+                <label>
+                    Wat wil je over je omgeving vertellen?
+                    <textarea id="environment" rows="4" placeholder="Beschrijf een samenwerking, gesprek of moment dat je is bijgebleven..." required></textarea>
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>05 · Groei en aanpak</legend>
+                <label>
+                    Wat doe je al goed?
+                    <textarea id="strengths" rows="3" placeholder="Denk aan softskills en technische skills..." required></textarea>
+                </label>
+                <label>
+                    Waar zie je groeikansen en hoe ga je daarmee om?
+                    <textarea id="growth" rows="3" placeholder="Welke volgende stap of actie neem je?" required></textarea>
+                </label>
+            </fieldset>
+
+            <fieldset class="positive-fieldset">
+                <legend>06 · Positief einde</legend>
+                <label>
+                    Eindig met een positief punt
+                    <textarea id="positive" rows="3" placeholder="Waar kijk je met een goed gevoel op terug?" required></textarea>
+                </label>
+            </fieldset>
+            <div class="form-actions">
+                <button type="submit" id="submit-button">Blogpost publiceren</button>
+                <button type="button" id="cancel-edit" hidden>Annuleren</button>
+            </div>
+        </form>
+
+        <div id="posts" aria-live="polite">
+            <p class="empty-state">Je hebt nog geen blogposts gepubliceerd.</p>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://yklbwlykfflozsxnaxaf.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlrbGJ3bHlrZmZsb3pzeG5heGFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5ODQ1NzUsImV4cCI6MjEwNTU2MDU3NX0.wEU1tvMKmF9imfm7_-NDRDauA3X3w41EfRSgvQJ8oAM';
+        const supabaseConfigured = !supabaseUrl.includes('YOUR_') && !supabaseKey.includes('YOUR_');
+        const supabaseClient = supabaseConfigured ? supabase.createClient(supabaseUrl, supabaseKey) : null;
+        const form = document.querySelector('#post-form');
+        const loginForm = document.querySelector('#login-form');
+        const loginToggle = document.querySelector('#login-toggle');
+        const loginCancel = document.querySelector('#login-cancel');
+        const profileArea = document.querySelector('#profile-area');
+        const profileName = document.querySelector('#profile-name');
+        const logoutButton = document.querySelector('#logout-button');
+        const authMessage = document.querySelector('#auth-message');
+        const postsContainer = document.querySelector('#posts');
+        const postCount = document.querySelector('#post-count');
+        const submitButton = document.querySelector('#submit-button');
+        const cancelEditButton = document.querySelector('#cancel-edit');
+        let posts = [];
+        let editingId = null;
+        let currentUser = null;
+
+        document.querySelector('#post-date').valueAsDate = new Date();
+
+        function getCheckedValues(name) {
+            return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map((input) => input.value);
+        }
+
+        function setCheckedValues(name, values = []) {
+            document.querySelectorAll(`input[name="${name}"]`).forEach((input) => {
+                input.checked = values.includes(input.value);
+            });
+        }
+
+        function getPostContent() {
+            return JSON.stringify({
+                version: 1,
+                workDone: document.querySelector('#work-done').value.trim(),
+                skills: getCheckedValues('skills'),
+                achievementLink: document.querySelector('#achievement-link').value.trim(),
+                deadlines: document.querySelector('input[name="deadlines"]:checked')?.value || '',
+                planning: document.querySelector('#planning').value.trim(),
+                learned: document.querySelector('#learned').value.trim(),
+                people: getCheckedValues('people'),
+                environment: document.querySelector('#environment').value.trim(),
+                strengths: document.querySelector('#strengths').value.trim(),
+                growth: document.querySelector('#growth').value.trim(),
+                positive: document.querySelector('#positive').value.trim()
+            });
+        }
+
+        function readPostContent(content) {
+            try {
+                const parsed = JSON.parse(content);
+                return parsed.version === 1 ? parsed : null;
+            } catch {
+                return null;
+            }
+        }
+
+        function createContent(data, legacyContent) {
+            if (!data) {
+                const content = document.createElement('p');
+                content.textContent = legacyContent;
+                return content;
+            }
+            const sections = [
+                ['Werk en realisaties', data.workDone],
+                ['Deadlines en planning', `${data.deadlines}\n${data.planning}`],
+                ['Nieuw geleerd', data.learned],
+                ['Mijn omgeving', data.environment],
+                ['Groei en aanpak', `Wat goed gaat: ${data.strengths}\nGroeikansen: ${data.growth}`],
+                ['Positief punt', data.positive]
+            ];
+            const wrapper = document.createElement('div');
+            wrapper.className = 'post-content';
+            sections.forEach(([heading, text]) => {
+                const section = document.createElement('section');
+                const title = document.createElement('h4');
+                title.textContent = heading;
+                const paragraph = document.createElement('p');
+                paragraph.textContent = text;
+                section.append(title, paragraph);
+                wrapper.append(section);
+            });
+            if (data.skills.length || data.achievementLink) {
+                const meta = document.createElement('p');
+                meta.className = 'post-meta';
+                meta.textContent = data.skills.length ? `Skills: ${data.skills.join(', ')}` : '';
+                if (data.achievementLink) {
+                    const link = document.createElement('a');
+                    link.href = data.achievementLink;
+                    link.target = '_blank';
+                    link.rel = 'noreferrer';
+                    link.textContent = 'Bekijk realisatie';
+                    meta.append(' ', link);
+                }
+                wrapper.append(meta);
+            }
+            return wrapper;
+        }
+
+        function renderPosts() {
+            postsContainer.innerHTML = '';
+            postCount.textContent = `${posts.length} ${posts.length === 1 ? 'post' : 'posts'}`;
+
+            if (posts.length === 0) {
+                postsContainer.innerHTML = '<p class="empty-state">Je hebt nog geen blogposts gepubliceerd.</p>';
+                return;
+            }
+
+            posts.forEach((post) => {
+                const article = document.createElement('details');
+                article.className = 'blog-post';
+
+                const summary = document.createElement('summary');
+                summary.className = 'post-summary';
+
+                const title = document.createElement('h3');
+                title.textContent = post.title;
+
+                const date = document.createElement('time');
+                date.dateTime = post.date;
+                date.textContent = new Date(`${post.date}T00:00:00`).toLocaleDateString('nl-BE', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+
+                const structuredContent = readPostContent(post.content);
+                summary.append(title, date);
+                article.append(summary, createContent(structuredContent, post.content));
+
+                if (currentUser) {
+                    const actions = document.createElement('div');
+                    actions.className = 'post-actions';
+                    actions.innerHTML = `
+                        <button type="button" data-action="edit" data-id="${post.id}">Bewerken</button>
+                        <button type="button" class="delete-button" data-action="delete" data-id="${post.id}">Verwijderen</button>
+                    `;
+                    article.append(actions);
+                }
+                postsContainer.append(article);
+            });
+        }
+
+        function resetForm() {
+            editingId = null;
+            form.reset();
+            document.querySelector('#post-date').valueAsDate = new Date();
+            submitButton.textContent = 'Blogpost publiceren';
+            cancelEditButton.hidden = true;
+        }
+
+        function setAdminView(user) {
+            currentUser = user;
+            form.hidden = !user;
+            loginToggle.hidden = Boolean(user);
+            profileArea.hidden = !user;
+            if (user) {
+                profileName.textContent = user.user_metadata?.full_name || user.email;
+            }
+            if (!user) {
+                loginForm.hidden = true;
+                resetForm();
+            }
+            renderPosts();
+        }
+
+        async function loadPosts() {
+            const { data, error } = await supabaseClient
+                .from('posts')
+                .select('id, title, date, content, created_at')
+                .order('date', { ascending: false })
+                .order('created_at', { ascending: false });
+
+            if (error) {
+                authMessage.textContent = 'Posts konden niet geladen worden.';
+                return;
+            }
+            posts = data;
+            renderPosts();
+        }
+
+        loginToggle.addEventListener('click', () => {
+            loginForm.hidden = false;
+            loginToggle.hidden = true;
+            document.querySelector('#login-email').focus();
+        });
+
+        loginCancel.addEventListener('click', () => {
+            loginForm.reset();
+            loginForm.hidden = true;
+            loginToggle.hidden = false;
+            authMessage.textContent = '';
+        });
+
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            authMessage.textContent = 'Inloggen...';
+            const { error } = await supabaseClient.auth.signInWithPassword({
+                email: document.querySelector('#login-email').value,
+                password: document.querySelector('#login-password').value
+            });
+            if (error) {
+                authMessage.textContent = 'Inloggen mislukt. Controleer je gegevens.';
+            }
+        });
+
+        logoutButton.addEventListener('click', async () => {
+            await supabaseClient.auth.signOut();
+            authMessage.textContent = '';
+        });
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const title = document.querySelector('#post-title').value.trim();
+            const date = document.querySelector('#post-date').value;
+            const content = getPostContent();
+
+            const post = { title, date, content };
+            let result;
+            if (editingId === null) {
+                result = await supabaseClient.from('posts').insert(post);
+            } else {
+                result = await supabaseClient.from('posts').update(post).eq('id', editingId);
+            }
+            if (result.error) {
+                authMessage.textContent = 'De blogpost kon niet opgeslagen worden.';
+                return;
+            }
+            resetForm();
+            await loadPosts();
+        });
+
+        postsContainer.addEventListener('click', async (event) => {
+            const button = event.target.closest('button[data-action]');
+            if (!button) {
+                return;
+            }
+
+            const postId = button.dataset.id;
+            if (button.dataset.action === 'delete') {
+                if (!confirm('Deze blogpost verwijderen?')) {
+                    return;
+                }
+                const { error } = await supabaseClient.from('posts').delete().eq('id', postId);
+                if (error) {
+                    authMessage.textContent = 'De blogpost kon niet verwijderd worden.';
+                    return;
+                }
+                if (editingId === postId) {
+                    resetForm();
+                }
+                await loadPosts();
+                return;
+            }
+
+            const post = posts.find((item) => String(item.id) === postId);
+            if (!post) {
+                return;
+            }
+            editingId = postId;
+            document.querySelector('#post-title').value = post.title;
+            document.querySelector('#post-date').value = post.date;
+            const content = readPostContent(post.content);
+            if (content) {
+                document.querySelector('#work-done').value = content.workDone;
+                document.querySelector('#achievement-link').value = content.achievementLink;
+                document.querySelector('#planning').value = content.planning;
+                document.querySelector('#learned').value = content.learned;
+                document.querySelector('#environment').value = content.environment;
+                document.querySelector('#strengths').value = content.strengths;
+                document.querySelector('#growth').value = content.growth;
+                document.querySelector('#positive').value = content.positive;
+                setCheckedValues('skills', content.skills);
+                setCheckedValues('people', content.people);
+                const deadline = document.querySelector(`input[name="deadlines"][value="${content.deadlines}"]`);
+                if (deadline) deadline.checked = true;
+            }
+            submitButton.textContent = 'Wijzigingen opslaan';
+            cancelEditButton.hidden = false;
+            form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        cancelEditButton.addEventListener('click', resetForm);
+
+        if (supabaseConfigured) {
+            supabaseClient.auth.onAuthStateChange((_event, session) => {
+                setAdminView(session?.user || null);
+            });
+
+            supabaseClient.auth.getSession().then(({ data: { session } }) => {
+                setAdminView(session?.user || null);
+                loadPosts();
+            });
+        } else {
+            loginToggle.disabled = true;
+            authMessage.textContent = 'Supabase moet nog ingesteld worden.';
+            renderPosts();
+        }
+    </script>
+</body>
+</html>
