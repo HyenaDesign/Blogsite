@@ -282,6 +282,27 @@ body > * {
     margin: 4px 0 24px;
 }
 
+.reflection-fields {
+    border-top: 1px solid #e1e1e1;
+    margin: 8px 0 24px;
+    padding-top: 18px;
+}
+
+.reflection-fields > summary,
+.post-reflection > summary {
+    color: #555;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.reflection-fields[open] > summary {
+    margin-bottom: 20px;
+}
+
+.reflection-fields fieldset {
+    margin-top: 18px !important;
+}
+
 #post-form fieldset {
     border: 1px solid #e1e1e1;
     border-radius: 6px;
@@ -507,6 +528,57 @@ body > * {
 .post-content h4 {
     font-size: 15px;
     margin-bottom: 4px;
+}
+
+.article-subtitle {
+    color: #666;
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.article-intro {
+    border-left: 3px solid #333;
+    font-size: 18px;
+    margin-bottom: 22px;
+    padding-left: 16px;
+}
+
+.post-content figure {
+    margin: 24px 0;
+}
+
+.post-content figure img {
+    display: block;
+    width: 100%;
+    max-height: 520px;
+    object-fit: cover;
+}
+
+.post-content figcaption {
+    color: #777;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.article-body {
+    font-size: 17px;
+    line-height: 1.85;
+    max-width: 72ch;
+}
+
+.article-body p + p {
+    margin-top: 18px;
+}
+
+.post-reflection {
+    border-top: 1px solid #ededed;
+    margin-top: 26px;
+    padding-top: 16px;
+}
+
+.post-reflection[open] > .post-content {
+    margin: 16px 0 0;
 }
 
 .post-meta {
